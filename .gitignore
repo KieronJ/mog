@@ -1,0 +1,19 @@
+# -*- mode: gitignore; -*-
+mog
+
+*.o
+*.exe
+*.flac
+*.ogg
+*.wav
+
+*.akao
+*.AKAO
+*.all
+*.ALL
+*.dat
+*.DAT
+*.snd
+*.SND
+
+.vscode/
