@@ -51,10 +51,7 @@ int sound_start(int debug)
     spu_init();
     spu_write(S_DEFAULT_SOUND_ADDR, blank_sound_data, sizeof(blank_sound_data));
 
-    if (sound_load_instr())
-    {
-        return 1;
-    }
+    if (sound_load_instr()) return 1;
 
     init_data();
     return 0;
@@ -95,6 +92,7 @@ void *sound_load_file_data(const char *filename)
     {
         printf("error: could not read file!\n");
         free(data);
+        fclose(fp);
         return NULL;
     }
 

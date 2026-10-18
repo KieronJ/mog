@@ -31,10 +31,10 @@ int sound_play_music(const char *filename)
 
     if (sound_player.music_id != seq->id)
     {
-        /* load bank2 data for One-Winged Angel */
-        if (seq->id == S_SEQ_ID_LB2 && sound_load_instr2())
+        if (seq->id == S_SEQ_ID_LB2)
         {
-            goto error;
+            /* load bank2 data for One-Winged Angel */
+            if (sound_load_instr2()) goto error;
         }
 
         sound_set_reverb_mode(seq->reverb_mode);
