@@ -89,9 +89,8 @@
 #define S_OP_LOOP_LEAVE     0xf1
 
 #define S_SAMPLE_RATE   44100
-#define S_SEQ_HZ        240
-#define S_ACCUM         ((float)S_SAMPLE_RATE/S_SEQ_HZ)
-#define S_BUF_SIZE      ((S_SAMPLE_RATE/S_SEQ_HZ) + 1)
+#define S_TICK_SAMPLE   185
+#define S_SEQ_HZ        ((float)S_SAMPLE_RATE/S_TICK_SAMPLE)
 
 #define S_SEQ_ID_LB2    82 /* One-Winged Angel */
 

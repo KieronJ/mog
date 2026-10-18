@@ -80,10 +80,9 @@ static short pan_r[256] =
 };
 
 static u_char music_buffer[S_MUSIC_BUFFER_SIZE];
-static short sample_buffer[S_BUF_SIZE * 2];
+static short sample_buffer[S_TICK_SAMPLE * 2];
 
 static int player_effect_time;
-static float player_accum;
 
 S_PLAYER sound_player;
 S_TRACK sound_tracks[S_NUM_VOICES];
@@ -741,16 +740,10 @@ static void tick(void)
 
 int sound_main(void **buffer, size_t *size)
 {
-    int whole;
-
-    player_accum += S_ACCUM;
-    whole = player_accum;
-    player_accum -= whole;
-
     tick();
-    spu_step(whole, sample_buffer);
+    spu_step(S_TICK_SAMPLE, sample_buffer);
     *buffer = sample_buffer;
-    *size = whole;
+    *size = S_TICK_SAMPLE;
 
     /* return whether the song is still playing */
     return sound_player.music_id != 0;
@@ -759,8 +752,6 @@ int sound_main(void **buffer, size_t *size)
 void sound_start_player(void)
 {
     u_short *buffer;
-
-    player_accum = 0.0f;
 
     buffer = (u_short *)music_buffer;
     sound_player.active_mask = *(int *)buffer & S_VOICE_MASK;

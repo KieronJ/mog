@@ -112,7 +112,10 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    for (int i = 0; i < time * S_SEQ_HZ; i++)
+    /* Convert time from seconds to sequencer ticks */
+    time = (float)time * S_SEQ_HZ;
+
+    for (int i = 0; i < time; i++)
     {
         void *buffer;
         size_t size;

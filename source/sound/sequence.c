@@ -157,7 +157,7 @@ static void display_bpm(void)
 
     if (sound_player.num_ticks == 0) return;
 
-    tempo = ((float)(sound_player.tempo >> 16) / 65536.0f) * 240.0f;
+    tempo = (float)(sound_player.tempo >> 16) / 65536.0f * S_SEQ_HZ;
     bpm = (tempo * 60.0f) / sound_player.num_ticks;
     printf("sequencer set to %.02f bpm\n", bpm);
 }
